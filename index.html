@@ -16,15 +16,6 @@
 				padding: 0;
 				box-sizing: border-box;
 			}
-			html {
-				overflow-y: auto;
-				scroll-behavior: smooth;
-				scroll-snap-type: y mandatory;
-			}
-			section {
-				scroll-snap-align: start;
-				height: 100vh;
-			}
 
 			:root {
 				--primary: #1a1a1a;
@@ -58,46 +49,32 @@
 
 			.accordion {
 				animation: slideUp 0.6s ease-out;
-				width: 60%;
-				height: fit-content;
-				max-width: 1300px;
+				width: min-content;
+				height: min-content;
+				margin-top: 10vh;
 				border-radius: 4px;
-				margin-top: 35vh;
 				margin-bottom: 12px;
 				background: white;
+				overflow: hidden;
 				box-shadow: var(--shadow);
 				transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
-				@media (width < 600px) {
-					width: 80%;
-				}
-
 				[data-theme="dark"] & {
 					background-color: hsl(200 10 40);
-				}
-
-				&.active {
-					width: 100%;
-					margin-top: 0;
 				}
 			}
 
 			.item {
 				transition: all 700ms ease;
-				width: 100%;
-				height: 100%;
+				width: fit-content;
 
 				&.active .content {
-					height: 90vh;
-				}
-
-				&.active .header::after {
-					transform: rotate(225deg);
+					background-color: hsl(0 0 15);
+					height: max-content;
 				}
 			}
 
 			.header {
-				position: relative;
 				padding: 24px;
 				cursor: pointer;
 				display: flex;
@@ -116,12 +93,24 @@
 
 				&::after {
 					content: "";
-					width: 1.5vh;
-					height: 1.5vh;
+					width: 1vh;
+					height: 1vh;
 					border-left: solid 2px black;
 					border-top: solid 2px black;
 					transform: rotate(45deg);
 					transition: transform 300ms ease;
+					flex-shrink: 0;
+				}
+
+				&.active {
+					width: 75vw;
+
+					& .content {
+						max-height: 900px;
+					}
+				}
+				&.active &::after {
+					transform: rotate(65deg);
 				}
 
 				.description {
@@ -129,61 +118,33 @@
 					color: var(--text-secondary);
 					padding-left: 1vw;
 				}
-
-				.download {
-					display: flex;
-					flex-direction: column;
-					align-items: center;
-					justify-content: space-around;
-					position: absolute;
-					right: 70px;
-					width: 30px;
-					aspect-ratio: 1;
-					background-color: black;
-
-					svg {
-						animation: bounce 1s infinite;
-						animation-play-state: paused;
-
-						&:hover {
-							animation-play-state: running;
-						}
-					}
-					div {
-						width: 70%;
-						border: solid 2px white;
-						border-top: none;
-						height: 4px;
-						border-bottom-left-radius: 2px;
-						border-bottom-right-radius: 2px;
-					}
-				}
 			}
 
 			.content {
-				user-select: none;
 				height: 0px;
-				width: 100%;
+				width: 75vw;
 				overflow: hidden;
 				display: flex;
 				flex-direction: column;
-				background-color: hsl(0 0 15);
 				align-items: center;
+				background-color: black;
 				transition: all 700ms ease;
-				overflow-y: auto;
 
 				& img {
 					width: 100%;
 					max-width: 595px;
 					max-height: 841px;
-					margin: 20px;
-					border-radius: 4px;
-					cursor: pointer;
-					transition: all 0.2s ease;
-					text-decoration: none;
-					display: block;
-					filter: drop-shadow(10px 10px 10px hsl(0 0 0/0.5));
 				}
+			}
+
+			.pdf-item {
+				margin: 20px;
+				border-radius: 4px;
+				cursor: pointer;
+				transition: all 0.2s ease;
+				text-decoration: none;
+				display: block;
+				filter: drop-shadow(10px 10px 10px hsl(0 0 0/0.5));
 			}
 
 			.lightbutton {
@@ -192,29 +153,13 @@
 				border: none;
 				aspect-ratio: 1;
 				position: fixed;
-				right: 3vh;
-				top: 3vh;
+				right: 2vh;
+				top: 2vh;
 				transition: all 450ms ease;
 
 				&:hover {
 					transform: rotate(180deg);
 				}
-
-				&::after {
-					content: "change light Theme";
-					white-space: nowrap;
-					color: grey;
-					position: absolute;
-					left: -9vw;
-					top: 20%;
-				}
-			}
-
-			.socials-button {
-				color: var(--text);
-				position: fixed;
-				right: 2vh;
-				bottom: 3vh;
 			}
 
 			@keyframes slideUp {
@@ -227,135 +172,66 @@
 					transform: translateY(0);
 				}
 			}
-
-			@keyframes bounce {
-				0%,
-				100% {
-					transform: translateY(0);
-				}
-				50% {
-					transform: translateY(4px);
-				}
-			}
 		</style>
 	</head>
 	<body data-theme="light">
-		<button class="lightbutton" onclick="toggleLightTheme()" title="Toggle light theme"></button>
-		<a
-			class="socials-button"
-			href="https://www.instagram.com/oedipus_filmes/"
-			referrerpolicy="noreferrer"
-			title="Oedipus Filmes Instagram"
-		>
-			<svg
-				fill="currentColor"
-				width="30px"
-				height="30px"
-				viewBox="0 0 256 256"
-				xmlns="http://www.w3.org/2000/svg"
-			>
-				<path
-					d="M160,128a32,32,0,1,1-32-32A32.03667,32.03667,0,0,1,160,128Zm68-44v88a56.06353,56.06353,0,0,1-56,56H84a56.06353,56.06353,0,0,1-56-56V84A56.06353,56.06353,0,0,1,84,28h88A56.06353,56.06353,0,0,1,228,84Zm-52,44a48,48,0,1,0-48,48A48.05436,48.05436,0,0,0,176,128Zm16-52a12,12,0,1,0-12,12A12,12,0,0,0,192,76Z"
-				/>
-			</svg>
-		</a>
+		<button class="lightbutton" onclick="toggleTheme()" title="Toggle light theme"></button>
 
-		<div class="accordion" onpointerdown="changeAccordionWidth(event)">
-			<section class="item" onpointerdown="selectAccordionItem(event)">
-				<div class="header">
+		<div class="accordion">
+			<div class="item" onclick="selectAccordionItem(event)">
+				<button class="header" onpointerdown="selectAccordion(event)">
 					<h3 style="display: flex; flex-direction: column; align-items: start">
 						Trabalho Final MMAP
 						<div class="description">Tens de me dizer o que queres que meta aqui</div>
 					</h3>
-					<a href="./docs/Trabalho Final MMAP Vasco Ayala Serôdio.pdf" target="_blank">
-						<button class="download" type="button">
-							<svg width="100%" height="70%" viewBox="0 0 100 100">
-								<line x1="50" y1="10" x2="50" y2="70" stroke="white" stroke-width="15" />
-								<polygon points="50,100 30,60 70,60" fill="white" />
-							</svg>
-
-							<div></div>
-						</button>
-					</a>
-				</div>
+				</button>
 				<div class="content">
-					<img src="./docs/Trabalho Final MMAP Vasco Ayala Serôdio_0.jpg" />
-					<img src="./docs/Trabalho Final MMAP Vasco Ayala Serôdio_1.jpg" />
-					<img src="./docs/Trabalho Final MMAP Vasco Ayala Serôdio_2.jpg" />
-					<img src="./docs/Trabalho Final MMAP Vasco Ayala Serôdio_3.jpg" />
-					<img src="./docs/Trabalho Final MMAP Vasco Ayala Serôdio_4.jpg" />
-					<img src="./docs/Trabalho Final MMAP Vasco Ayala Serôdio_5.jpg" />
-					<img src="./docs/Trabalho Final MMAP Vasco Ayala Serôdio_6.jpg" />
-					<img src="./docs/Trabalho Final MMAP Vasco Ayala Serôdio_7.jpg" />
+					<img class="pdf-item" src="./docs/Trabalho Final MMAP Vasco Ayala Serôdio_0.png" />
+					<img class="pdf-item" src="./docs/Trabalho Final MMAP Vasco Ayala Serôdio_1.png" />
+					<img class="pdf-item" src="./docs/Trabalho Final MMAP Vasco Ayala Serôdio_2.png" />
+					<img class="pdf-item" src="./docs/Trabalho Final MMAP Vasco Ayala Serôdio_3.png" />
+					<img class="pdf-item" src="./docs/Trabalho Final MMAP Vasco Ayala Serôdio_4.png" />
+					<img class="pdf-item" src="./docs/Trabalho Final MMAP Vasco Ayala Serôdio_5.png" />
+					<img class="pdf-item" src="./docs/Trabalho Final MMAP Vasco Ayala Serôdio_6.png" />
+					<img class="pdf-item" src="./docs/Trabalho Final MMAP Vasco Ayala Serôdio_7.png" />
 				</div>
-			</section>
-			<section class="item" onpointerdown="selectAccordionItem(event)">
-				<div class="header">
+			</div>
+			<div id="pdf-2" class="item" onpointerdown="selectAccordionItem(event)">
+				<button class="header" onpointerdown="selectAccordion(event)">
 					<h3 style="display: flex; flex-direction: column; align-items: start">
-						La prima notte di quiete
-						<div class="description">Análise do filme</div>
+						Análise do filme “La prima notte di quiete”
+						<div class="description">Uma pequena descrição</div>
 					</h3>
-					<a
-						target="_blank"
-						href="./docs/Vasco Ayala Serôdio. Análise do filme “La prima notte di quiete”.pdf"
-						><button class="download" type="button">
-							<svg width="100%" height="70%" viewBox="0 0 100 100">
-								<line x1="50" y1="10" x2="50" y2="70" stroke="white" stroke-width="15" />
-								<polygon points="50,100 30,60 70,60" fill="white" />
-							</svg>
-
-							<div></div></button
-					></a>
-				</div>
+				</button>
 				<div class="content">
-					<img src="./docs/Vasco Ayala Serôdio. Análise do filme “La prima notte di quiete”_0.jpg" />
-					<img src="./docs/Vasco Ayala Serôdio. Análise do filme “La prima notte di quiete”_1.jpg" />
-					<img src="./docs/Vasco Ayala Serôdio. Análise do filme “La prima notte di quiete”_2.jpg" />
-					<img src="./docs/Vasco Ayala Serôdio. Análise do filme “La prima notte di quiete”_3.jpg" />
-					<img src="./docs/Vasco Ayala Serôdio. Análise do filme “La prima notte di quiete”_4.jpg" />
-					<img src="./docs/Vasco Ayala Serôdio. Análise do filme “La prima notte di quiete”_5.jpg" />
-					<img src="./docs/Vasco Ayala Serôdio. Análise do filme “La prima notte di quiete”_6.jpg" />
-					<img src="./docs/Vasco Ayala Serôdio. Análise do filme “La prima notte di quiete”_7.jpg" />
-					<img src="./docs/Vasco Ayala Serôdio. Análise do filme “La prima notte di quiete”_8.jpg" />
-					<img src="./docs/Vasco Ayala Serôdio. Análise do filme “La prima notte di quiete”_9.jpg" />
-					<img src="./docs/Vasco Ayala Serôdio. Análise do filme “La prima notte di quiete”_10.jpg" />
-					<img src="./docs/Vasco Ayala Serôdio. Análise do filme “La prima notte di quiete”_11.jpg" />
+					<img
+						height="841"
+						width="595"
+						class="pdf-item"
+						src="./docs/Vasco Ayala Serôdio. Análise do filme “La prima notte di quiete”.pdf"
+					/>
 				</div>
-			</section>
-			<section class="item" onpointerdown="selectAccordionItem(event)">
-				<div class="header">
+			</div>
+			<div class="item" onpointerdown="selectAccordionItem(event)">
+				<button class="header" onpointerdown="selectAccordion(event)">
 					<h3 style="display: flex; flex-direction: column; align-items: start">
 						Another Woman EEA
 						<div class="description">Ou a data ou o porque de teres feito isto</div>
 					</h3>
-					<a target="_blank" href="./docs/Vasco Ayala Serôdio _Another Woman_ EEA.pdf">
-						<button class="download" type="button">
-							<svg width="100%" height="70%" viewBox="0 0 100 100">
-								<line x1="50" y1="10" x2="50" y2="70" stroke="white" stroke-width="15" />
-								<polygon points="50,100 30,60 70,60" fill="white" />
-							</svg>
+				</button>
 
-							<div></div>
-						</button>
-					</a>
-				</div>
 				<div class="content">
-					<img src="./docs/Vasco Ayala Serôdio _Another Woman_ EEA_0.jpg" />
-					<img src="./docs/Vasco Ayala Serôdio _Another Woman_ EEA_1.jpg" />
-					<img src="./docs/Vasco Ayala Serôdio _Another Woman_ EEA_2.jpg" />
-					<img src="./docs/Vasco Ayala Serôdio _Another Woman_ EEA_3.jpg" />
-					<img src="./docs/Vasco Ayala Serôdio _Another Woman_ EEA_4.jpg" />
-					<img src="./docs/Vasco Ayala Serôdio _Another Woman_ EEA_5.jpg" />
-					<img src="./docs/Vasco Ayala Serôdio _Another Woman_ EEA_6.jpg" />
-					<img src="./docs/Vasco Ayala Serôdio _Another Woman_ EEA_7.jpg" />
-					<img src="./docs/Vasco Ayala Serôdio _Another Woman_ EEA_8.jpg" />
-					<img src="./docs/Vasco Ayala Serôdio _Another Woman_ EEA_9.jpg" />
-					<img src="./docs/Vasco Ayala Serôdio _Another Woman_ EEA_10.jpg" />
+					<img
+						height="841"
+						width="595"
+						class="pdf-item"
+						src="./docs/Vasco Ayala Serôdio _Another Woman_ EEA.pdf"
+					/>
 				</div>
-			</section>
+			</div>
 		</div>
 		<script>
-			function toggleLightTheme() {
+			function toggleTheme() {
 				const isDarkMode = document.body.getAttribute("data-theme") === "dark";
 				document.body.setAttribute("data-theme", isDarkMode ? "light" : "dark");
 				document.body.style.background = isDarkMode
@@ -363,45 +239,49 @@
 					: "linear-gradient(135deg, hsl(0 0 0) 0%, hsl(100 20 10) 100%)";
 			}
 
-			function getUserSystemThemePreference() {
+			function loadTheme() {
 				const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
 				document.body.setAttribute("data-theme", isDarkMode ? "dark" : "light");
 				document.body.style.background = isDarkMode
 					? "linear-gradient(135deg, hsl(0 0 0) 0%, hsl(200 10 10) 100%)"
 					: "linear-gradient(135deg, #fafbfc 0%, #f0f4f8 100%)";
 			}
-			getUserSystemThemePreference();
+
+			loadTheme();
+
+			function loadPDF(url, title, viewerId) {
+				const viewer = document.getElementById(`pdfViewer-${viewerId}`);
+				if (viewer) {
+					viewer.innerHTML = `<iframe src="${url}" style="width: 100%; height: 100%; border: none;"></iframe>`;
+				}
+			}
 
 			function selectAccordionItem(e) {
 				const target = e.currentTarget;
 
-				const items = document.getElementsByClassName("item");
-				for (let i = 0; i < items.length; i++) {
-					if (items[i] != target) items[i].classList.remove("active");
+				target.scrollIntoView({ behavior: "smooth" });
+
+				const headers = document.getElementsByClassName("item");
+				for (h of headers) {
+					if (h != target) h.classList.remove("active");
 				}
 
-				if (!target.classList.contains("active")) {
-					target.classList.add("active");
-					target.scrollIntoView({ behaviour: "smooth" });
-				} else target.classList.remove("active");
+				if (!target.classList.contains("active")) target.classList.add("active");
+				else target.classList.remove("active");
 			}
 
-			function changeAccordionWidth(e) {
+			function selectAccordion(e) {
 				const target = e.currentTarget;
+				const headers = document.getElementsByClassName("header");
 
-				if (!target.classList.contains("active")) target.classList.add("active");
-				else {
-					const items = document.getElementsByClassName("item");
-
-					let isActive = false;
-					for (let i = 0; i < items.length; i++) {
-						if (items[i].classList.contains("active")) {
-							isActive = true;
-							break;
-						}
+				if (target.classList.contains("active")) {
+					for (h of headers) {
+						h.classList.remove("active");
 					}
-
-					if (!isActive) target.classList.remove("active");
+				} else {
+					for (h of headers) {
+						h.classList.add("active");
+					}
 				}
 			}
 		</script>
