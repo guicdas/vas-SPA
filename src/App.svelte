@@ -246,7 +246,7 @@ onMount(() => {
 		<article class="article">
 			{#if getCurrentPage()}
 				<div class="page-content">
-					{#each getCurrentPage().content as block, idx (idx)}
+					{#each getCurrentPage().content as block}
 						{#if block.type === 'image'}
 							<figure class={block.type}>
 								<img
