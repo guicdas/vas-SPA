@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<meta name="description" content="Listing of works about stuff" />
+		<meta property="og:title" content="Vasco Ayala Serôdio" />
+		<meta property="og:image" content="banner.jpg" />
+		<title>Vasco Ayala Serôdio</title>
+    <link rel="icon" id="favicon" href="banner.jpg" type="image/svg" />
+
+	<style>
+		:root {
+			--color-primary: #1a1a1a;
+			--color-secondary: #666;
+			--color-accent: #0066ff;
+			--color-border: #e0e0e0;
+			--color-background: #ffffff;
+		}
+	
+		body	 {
+			font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+			background-color: var(--color-background);
+			color: var(--color-primary);
+			line-height: 1.6;
+		}
+	
+		.homepage {
+			min-height: 100vh;
+			display: flex;
+			flex-direction: column;
+			align-items: start;
+			justify-content: start;
+			text-align: center;
+			background: linear-gradient(135deg, #ffffff 0%, #f8f9fb 100%);
+		}
+	
+		.home-title {
+			position: absolute;
+			top: 5vh;
+			left:5vw;
+			display: flex;
+			flex-direction: column;
+
+			
+			.text {
+				font-size: 2rem;
+				font-weight: 700;
+				transition: all 200ms ease;
+				position: relative;
+				margin-bottom: 0;
+				
+				&::before {
+					position: absolute;
+					left: -1vw;	
+					border-left: solid 2px black;
+					transition: all 250ms ease;
+					width: 2px;
+					height: 15vh;
+					color: black;
+					content: "";
+				}
+				&.hidden::before {
+					height: 100%;
+				}
+				&.disappear::before {
+border: none;
+				}
+
+				&::after {
+					content: "Serôdio";
+					position: absolute;
+					translate: 5% 1%;
+					transition: all 250ms ease;
+					background-color: white;
+				}
+				&.hidden::after {
+					transform: translateX(-77%);
+				}
+			}
+			
+			
+			.bar {
+				position: absolute;
+				bottom: 0;
+				left: -5%;
+				width: 180%;
+				background-color: black;
+				height: 2px;
+				transition: all 250ms ease;
+
+				&.hidden {
+					height: 1px;
+					width: 130%;
+				}
+
+				&.disappear {
+					width: 0%;
+					height: 0;
+				}
+			}
+
+		}
+		
+		
+		.links-list {
+			margin-top: 32vh;
+			display: flex;
+			flex-direction: column;
+		}
+	
+		.link-button {
+			width: 60vw;
+			padding-top: 2vh;
+			padding-bottom: 2vh;
+			margin-left: 30%;
+			font-size: 1.1rem;
+			font-weight: bold;
+			color: hsl(0 0 25);
+			border: none;
+			cursor: pointer;
+			background: transparent;
+			border-radius: 8px;
+			transition: all 180ms ease;
+			text-align: left;
+			
+			&::before {
+				content: "_";
+				display: none;
+			}
+		}
+		
+		.link-button:hover {
+			font-weight: bolder;
+			color: black;
+			letter-spacing: 0.03rem;
+			text-transform: capitalize;
+
+			&::before {
+				display: inline-block;
+			}
+		}
+
+		.page-container {
+			min-height: 100vh;
+			background: linear-gradient(135deg, #ffffff 0%, #f8f9fb 100%);
+			position: relative;
+			font-family: 'Times New Roman', Times, serif;
+		}
+	
+		.home-button {
+			position: fixed;
+			top: 2vw;
+			left: 2vw;
+			color: white;
+			cursor: pointer;
+			transition: all 100ms ease;
+			z-index: 10;
+			border: none;
+			background: transparent;
+			
+			&:hover {
+				translate: 0 -2px;
+			}
+			
+			svg {
+				width: 24px;
+				aspect-ratio: 1;
+				color: hsl(0 0 30);
+			}
+		}
+	
+
+			
+		.article {
+			max-width: 720px;
+			margin: 0 auto;
+			padding: 3rem 2rem;
+			padding-top: 3rem;
+		}
+	
+
+		
+		.page-content {
+			display: flex;
+			flex-direction: column;
+			gap: 2vh;
+			position: relative;
+
+			sup {
+				font-size: 0.5rem;
+			}
+			
+			.title {
+				font-size: 2rem;
+				font-weight: 700;
+	
+				p {
+					margin-top: 0;
+					font-size: 1.4rem;
+				}
+			}
+			
+			.subtitle {
+				margin-top: 0;
+				text-align: end;
+				position: relative;
+				font-size: 1.2rem;
+				right: 0;
+				text-indent: 1rem;
+				color: black;
+				font-weight: bolder;
+			}
+
+			.text {
+				font-size: 1.1rem;
+				line-height: 1.8;
+				color: var(--color-primary);
+				text-indent: 3rem;
+				margin-bottom: 2vh;
+			}
+
+			.image {
+				margin: 0;
+				border-radius: 8px;
+				overflow: hidden;
+				box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+				
+				& img {
+					width: 100%;
+					height: auto;
+					background-color: grey;
+					display: block;
+				}
+			}
+
+			.chapter {
+				font-weight: bolder;
+				margin-bottom: 0;
+				margin-top: 3vh;
+			}
+
+			.dialog {
+				margin-left: 5%;
+			}
+
+			.quote {
+				font-size: 1rem;
+				text-indent: 4rem;
+				margin-left: 10%;
+			}
+
+			.author {
+				text-align: end;
+			}
+		}
+	
+	
+	
+
+	</style>
+
+
+    <title>my-spa</title>
+    <script type="module" crossorigin src="/assets/index-D9s4mQlt.js"></script>
+  </head>
+
+  <body>
+    <div id="app"></div>
+  </body>
+</html>
