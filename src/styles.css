@@ -17,112 +17,110 @@ body {
 .homepage {
 	min-height: 100vh;
 	display: flex;
-	flex-direction: column;
-	align-items: start;
-	justify-content: start;
 	text-align: center;
 	background: linear-gradient(135deg, #ffffff 0%, #f8f9fb 100%);
-}
 
-.home-title {
-	position: absolute;
-	top: 5vh;
-	left: 5vw;
-	display: flex;
-	flex-direction: column;
-
-	.text {
-		font-size: 2rem;
-		font-weight: 700;
-		transition: all 200ms ease;
-		position: relative;
-		margin-bottom: 0;
-
-		&::before {
-			position: absolute;
-			left: -1vw;
-			border-left: solid 2px black;
-			transition: all 250ms ease;
-			width: 2px;
-			height: 15vh;
-			color: black;
-			content: "";
-		}
-		&.hidden::before {
-			height: 100%;
-		}
-		&.disappear::before {
-			border: none;
-		}
-
-		&::after {
-			content: "Serôdio";
-			position: absolute;
-			translate: 5% 1%;
-			transition: all 250ms ease;
-			background-color: white;
-		}
-		&.hidden::after {
-			transform: translateX(-77%);
-		}
-	}
-
-	.bar {
+	.home-title {
 		position: absolute;
-		bottom: 0;
-		left: -5%;
-		width: 180%;
-		background-color: black;
-		height: 2px;
-		transition: all 250ms ease;
+		top: 5vh;
+		left: 5vw;
+		display: flex;
+		flex-direction: column;
 
-		&.hidden {
-			height: 1px;
-			width: 130%;
+		.text {
+			font-size: 2rem;
+			font-weight: 700;
+			transition: all 200ms ease;
+			position: relative;
+			margin-bottom: 0;
+
+			&::before {
+				position: absolute;
+				left: -1vw;
+				border-left: solid 2px black;
+				transition: all 250ms ease;
+				width: 2px;
+				height: 15vh;
+				color: black;
+				content: "";
+			}
+			&.hidden::before {
+				height: 100%;
+				border-left-width: 1px;
+			}
+			&.disappear::before {
+				border: none;
+			}
+
+			&::after {
+				content: "Serôdio";
+				position: absolute;
+				translate: 5% 1%;
+				transition: all 250ms ease;
+				background-color: white;
+			}
+			&.hidden::after {
+				transform: translateX(-77%);
+			}
 		}
 
-		&.disappear {
-			width: 0%;
-			height: 0;
+		.bar {
+			position: absolute;
+			bottom: 0;
+			left: -7%;
+			width: 180%;
+			background-color: black;
+			height: 2px;
+			transition: all 250ms ease;
+
+			&.hidden {
+				height: 1px;
+				width: 130%;
+			}
+
+			&.disappear {
+				width: 0%;
+				height: 0;
+			}
 		}
 	}
-}
 
-.links-list {
-	margin-top: 32vh;
-	display: flex;
-	flex-direction: column;
-}
+	.links-list {
+		margin-top: 32vh;
+		display: flex;
+		flex-direction: column;
 
-.link-button {
-	width: 60vw;
-	padding-top: 2vh;
-	padding-bottom: 2vh;
-	margin-left: 30%;
-	font-size: 1.1rem;
-	font-weight: bold;
-	color: hsl(0 0 25);
-	border: none;
-	cursor: pointer;
-	background: transparent;
-	border-radius: 8px;
-	transition: all 180ms ease;
-	text-align: left;
+		.link-button {
+			width: 60vw;
+			padding-top: 2vh;
+			padding-bottom: 2vh;
+			margin-left: 30%;
+			font-size: 1.1rem;
+			font-weight: bold;
+			color: hsl(0 0 25);
+			border: none;
+			cursor: pointer;
+			background: transparent;
+			border-radius: 8px;
+			transition: all 180ms ease;
+			text-align: left;
 
-	&::before {
-		content: "_";
-		display: none;
-	}
-}
+			&::before {
+				content: "_";
+				display: none;
+			}
+		}
 
-.link-button:hover {
-	font-weight: bolder;
-	color: black;
-	letter-spacing: 0.03rem;
-	text-transform: capitalize;
+		.link-button:hover {
+			font-weight: bolder;
+			color: black;
+			letter-spacing: 0.03rem;
+			text-transform: capitalize;
 
-	&::before {
-		display: inline-block;
+			&::before {
+				display: inline-block;
+			}
+		}
 	}
 }
 

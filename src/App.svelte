@@ -157,7 +157,7 @@ const pages = [
 		content: [
 			{
 				type: "text",
-				text: "Welcome to page two. Here you can organize your content however you like.",
+				text: "Nad de importante aqui meu puto vai ver o outro pdf",
 			},
 		],
 	},
@@ -187,13 +187,13 @@ function goToPage(slug) {
 function goHome() {
 	currentPage = "home";
 	window.scrollTo({ top: 0, behavior: "smooth" });
-	setTimeout(() => title?.classList.add("hidden"), 1100);
-	setTimeout(() => bar?.classList.add("hidden"), 1200);
+	setTimeout(() => title?.classList.add("hidden"), 800);
+	setTimeout(() => bar?.classList.add("hidden"), 900);
 	setTimeout(() => {
 		bar?.classList.remove("hidden");
 		bar?.classList.add("disappear");
 		title?.classList.add("disappear");
-	}, 1600);
+	}, 1400);
 }
 
 function getCurrentPage() {
