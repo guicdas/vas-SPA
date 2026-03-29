@@ -1,7 +1,8 @@
-import { defineConfig } from "vite";
 import { svelte } from "@sveltejs/vite-plugin-svelte";
+import visualizer from "rollup-plugin-visualizer";
+import { defineConfig } from "vite";
 
 export default defineConfig({
 	base: "/",
-	plugins: [svelte()],
+	plugins: [svelte(), visualizer()],
 });
