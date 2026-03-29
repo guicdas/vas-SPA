@@ -17,15 +17,7 @@ function titleAnimation(startTimeout: number) {
 
 function goToPage(slug) {
 	currentPage = slug;
-	window.location.pathname = "";
 	window.location.hash = slug;
-}
-
-function goHome() {
-	currentPage = "home";
-	window.location.pathname = "";
-
-	titleAnimation(800);
 }
 
 function getCurrentPage() {
@@ -61,8 +53,6 @@ onMount(() => {
 	<style lang="css">
 		:root {
 		--color-primary: #1a1a1a;
-		--color-secondary: #666;
-		--color-accent: #0066ff;
 		--color-border: #e0e0e0;
 		--color-background: #ffffff;
 	}
@@ -105,23 +95,28 @@ onMount(() => {
 					color: black;
 					content: "";
 				}
-				&.hidden::before {
-					height: 100%;
-					border-left-width: 1px;
+				&.hidden {
+					text-transform: lowercase;
+
+					&::before {
+						height: 100%;
+						border-left-width: 1px;
+					}
+					&::after {
+						transform: translateX(-77%);
+					}
 				}
+
 				&.disappear::before {
 					border: none;
 				}
-
+				
 				&::after {
 					content: "Serôdio";
 					position: absolute;
 					translate: 5% 1%;
 					transition: all 250ms ease;
 					background-color: white;
-				}
-				&.hidden::after {
-					transform: translateX(-77%);
 				}
 			}
 
@@ -339,8 +334,8 @@ onMount(() => {
 			<button 
 				class="home-button" 
 				on:pointerdown={() => {
-					window.location.hash = "";				
-					//window.location.pathname = "";
+					window.location.hash = "";
+					titleAnimation(1100);	
 				}} 
 				title="Return to Homepage">
 				<span></span>
