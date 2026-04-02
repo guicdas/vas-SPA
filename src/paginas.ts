@@ -12,10 +12,16 @@ interface Page {
 	content: ContentBlock[];
 }
 
+export enum PageSlugs {
+	firstPage = "trab-final-mmap",
+	secondPage = "another-woman-eea",
+	thirdPage = "analise-prima-notte"
+}
+
 const pages: Page[] = [
 	{
 		id: 1,
-		slug: "trab-final-mmap",
+		slug: PageSlugs.firstPage,
 		title: "trabalho final mmap",
 		content: [
 			{
@@ -160,7 +166,7 @@ const pages: Page[] = [
 	},
 	{
 		id: 2,
-		slug: "another-woman-eea",
+		slug: PageSlugs.secondPage,
 		title: "another woman eea",
 		content: [
 			{
@@ -379,7 +385,7 @@ const pages: Page[] = [
 	},
 	{
 		id: 3,
-		slug: "analise-prima-notte",
+		slug: PageSlugs.thirdPage,
 		title: "análise do filme “La prima notte di quiete”",
 		content: [
 			{

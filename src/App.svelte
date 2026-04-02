@@ -1,7 +1,7 @@
 <script lang="ts">
 import { onMount } from "svelte";
 import { fade } from "svelte/transition";
-import pages from "./paginas";
+import pages, { PageSlugs } from "./paginas";
 
 let currentPage = "home";
 
@@ -15,7 +15,7 @@ function titleAnimation(startTimeout: number) {
 	}, startTimeout + 600);
 }
 
-function goToPage(slug) {
+function goToPage(slug: PageSlugs) {
 	currentPage = slug;
 	window.location.hash = slug;
 }
@@ -25,7 +25,7 @@ function getCurrentPage() {
 }
 
 function handleHash() {
-	const slug = window.location.hash.slice(1);
+	const slug = window.location.hash.slice(1) as PageSlugs;
 	currentPage = slug || "home";
 
 	titleAnimation(900);
@@ -35,7 +35,7 @@ let title: HTMLHeadingElement;
 let bar: HTMLSpanElement;
 
 onMount(() => {
-	const hash = window.location.hash.slice(1);
+	const hash = window.location.hash.slice(1) as PageSlugs;
 	if (hash && pages.find((p) => p.slug === hash)) currentPage = hash;
 
 	titleAnimation(1100);
@@ -47,7 +47,7 @@ onMount(() => {
 	<meta name="description" content="Listing of works about stuff" />
 	<meta property="og:title" content="Vasco Ayala Serôdio" />
 	<meta property="og:image" content="banner.jpg" />
-	<title>Vasco Ayala Serôdio</title>
+	<title>Vasco Ayala</title>
 
 
 	<style lang="css">
@@ -63,6 +63,10 @@ onMount(() => {
 		background-color: var(--color-background);
 		color: var(--color-primary);
 		line-height: 1.6;
+
+		@media (orientation: portrait) {
+			line-height: 1.4;
+		}
 	}
 
 	.homepage {
@@ -84,6 +88,10 @@ onMount(() => {
 				transition: all 200ms ease;
 				position: relative;
 				margin-bottom: 0;
+
+				@media (orientation: portrait) {
+						font-size: 1.7rem;
+					}
 
 				&::before {
 					position: absolute;
@@ -161,6 +169,10 @@ onMount(() => {
 				transition: all 180ms ease;
 				text-align: left;
 
+				@media (orientation: portrait) {
+						font-size: 0.8rem;
+					}
+
 				&::before {
 					content: "_";
 					display: none;
@@ -234,15 +246,27 @@ onMount(() => {
 				
 				sup {
 					font-size: 0.5rem;
+
+					@media (orientation: portrait) {
+						font-size: 0.4rem;
+					}
 				}
 				
 				.title {
 					font-size: 2rem;
 					font-weight: 700;
 					
+					@media (orientation: portrait) {
+						font-size: 1.7rem;
+					}
+
 					p {
 						margin-top: 0;
 						font-size: 1.4rem;
+
+						@media (orientation: portrait) {
+						font-size: 1.1rem;
+					}
 					}
 				}
 				
@@ -255,6 +279,10 @@ onMount(() => {
 					text-indent: 1rem;
 					color: black;
 					font-weight: bolder;
+
+					@media (orientation: portrait) {
+						font-size: 0.9rem;
+					}
 				}
 				
 				.text {
@@ -263,6 +291,11 @@ onMount(() => {
 					color: var(--color-primary);
 					text-indent: 3rem;
 					margin-bottom: 2vh;
+
+					@media (orientation: portrait) {
+						font-size: 0.8rem;
+						line-height: 1.6;
+					}
 				}
 				
 				.image {
@@ -293,6 +326,10 @@ onMount(() => {
 					font-size: 1rem;
 					text-indent: 4rem;
 					margin-left: 10%;
+
+					@media (orientation: portrait) {
+						font-size: 0.7rem;
+					}
 				}
 		
 				.author {
