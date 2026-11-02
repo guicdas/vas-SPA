@@ -1,6 +1,5 @@
-package-lock.json
 node_modules/
-dist/
+.svelte-kit/
+build/
 .vscode/
 .DS_Store
-stats.html

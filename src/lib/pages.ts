@@ -1,36 +1,26 @@
-<script lang="ts">
-import { onMount } from "svelte";
-import { fade } from "svelte/transition";
-
-type ContentBlock = {
+export type ContentBlock = {
 	type: string;
 	text?: string;
 	src?: string;
 	alt?: string;
 };
 
-interface Page {
-	id: number;
+export interface Page {
 	slug: string;
 	title: string;
+	date: string;
 	content: ContentBlock[];
 }
 
-enum PageSlugs {
-	firstPage = "trab-final-mmap",
-	secondPage = "another-woman-eea",
-	thirdPage = "analise-prima-notte",
-}
-
-const pages: Page[] = [
+export const pages: Page[] = [
 	{
-		id: 1,
-		slug: PageSlugs.firstPage,
+		slug: "trab-final-mmap",
+		date: "2025-01-11",
 		title: "trabalho final mmap",
 		content: [
 			{
 				type: "title",
-				text: "“O Plano que Tudo Revela e Tudo Reflete”<p> A Imagem Cristalizada no Cinema de Manoel de Oliveira</p>",
+				text: "“O Plano que Tudo Revela e Tudo Reflete” <span class='sub'>A Imagem Cristalizada no Cinema de Manoel de Oliveira</span>",
 			},
 			{
 				type: "subtitle",
@@ -46,7 +36,7 @@ const pages: Page[] = [
 			},
 			{
 				type: "text",
-				text: "Irei analisar, especificamente, a segunda cena <a href='https://youtu.be/aYFfA46NoaE?si=V6nh_w4VZu6AsIB4&t=258' noreferrer >(04:18-07:07)</a> do filme “Francisca” porque penso que articula a essência do que Oliveira procurava. Primeiramente, é relevante mencionar que este filme é uma adaptação do romance “Fanny Owen” de Agustina Bessa- Luís, que por si mesmo é baseado em “No Bom Jesus do Monte” de Camilo Castelo Branco e em documentos da altura, que são baseados em vivências reais. Parece ainda mais pertinente este filme ser um espelho do real em vez de uma réplica “naturalista” do mesmo pela acumulação de adaptações. Surpreendentemente, Camilo é um dos protagonistas, ou melhor, é o testemunha dos eventos do filme, como uma bússola moral e como um olhar perturbado e fascinado de um artista em relação ao real. Camilo testemunha a paixão funesta entre José Augusto Pinto de Magalhães, aristocrata do Porto, e Fanny Owen ou “aportuguesadamente”, Francisca, aristocrata inglesa a viver em Portugal com a família. Camilo e José vivem uma amizade cínica e intelectual, lembrando a intensidade das amizades dos surrealistas, em que discutem e confundem o modo de viver com as teorias que cada um tem sobre a arte e o mundo. Um mundo onde o Brasil acaba de ganhar independência deixando “uma fracção da juventude, que na guerra civil viu derrotados em 1847 os seus ideais tradicionalistas” e que “acaba por encarnar um tipo céptico, inclinado às paixões funestas.”<sup>2</sup>. Numa festa, quando Camilo tenta persuadir Fanny a não se interessar pelo mistério e falsas poesias do seu amigo, a menina, surpreendida, pergunta-lhe se ele é realmente amigo de José. O escritor elegantemente responde: “a amizade não proíbe a ingratidão da lucidez” e, mais importante ainda, “ele disse um dia: «não será longa a minha existência», e quem sonha com a morte aos 25 anos ou é poesia ou é crime”.",
+				text: "Irei analisar, especificamente, a segunda cena <a href='https://youtu.be/aYFfA46NoaE?si=V6nh_w4VZu6AsIB4&t=258' target='_blank' rel='noreferrer'>(04:18-07:07)</a> do filme “Francisca” porque penso que articula a essência do que Oliveira procurava. Primeiramente, é relevante mencionar que este filme é uma adaptação do romance “Fanny Owen” de Agustina Bessa- Luís, que por si mesmo é baseado em “No Bom Jesus do Monte” de Camilo Castelo Branco e em documentos da altura, que são baseados em vivências reais. Parece ainda mais pertinente este filme ser um espelho do real em vez de uma réplica “naturalista” do mesmo pela acumulação de adaptações. Surpreendentemente, Camilo é um dos protagonistas, ou melhor, é o testemunha dos eventos do filme, como uma bússola moral e como um olhar perturbado e fascinado de um artista em relação ao real. Camilo testemunha a paixão funesta entre José Augusto Pinto de Magalhães, aristocrata do Porto, e Fanny Owen ou “aportuguesadamente”, Francisca, aristocrata inglesa a viver em Portugal com a família. Camilo e José vivem uma amizade cínica e intelectual, lembrando a intensidade das amizades dos surrealistas, em que discutem e confundem o modo de viver com as teorias que cada um tem sobre a arte e o mundo. Um mundo onde o Brasil acaba de ganhar independência deixando “uma fracção da juventude, que na guerra civil viu derrotados em 1847 os seus ideais tradicionalistas” e que “acaba por encarnar um tipo céptico, inclinado às paixões funestas.”<sup>2</sup>. Numa festa, quando Camilo tenta persuadir Fanny a não se interessar pelo mistério e falsas poesias do seu amigo, a menina, surpreendida, pergunta-lhe se ele é realmente amigo de José. O escritor elegantemente responde: “a amizade não proíbe a ingratidão da lucidez” e, mais importante ainda, “ele disse um dia: «não será longa a minha existência», e quem sonha com a morte aos 25 anos ou é poesia ou é crime”.",
 			},
 			{
 				type: "image",
@@ -164,22 +154,22 @@ const pages: Page[] = [
 			},
 			{
 				type: "author",
-				text: "Lisboa, 11 de Janeiro de 2025 <br> Vasco Ayala Serôdio",
+				text: "Lisboa, <time datetime='2025-01-11'>11 de Janeiro de 2025</time> <br> Vasco Ayala Serôdio",
 			},
 		],
 	},
 	{
-		id: 2,
-		slug: PageSlugs.secondPage,
+		slug: "another-woman-eea",
+		date: "2025-01-31",
 		title: "another woman eea",
 		content: [
 			{
 				type: "title",
-				text: "“O Plano que Tudo Revela e Tudo Reflete”<p> A Imagem Cristalizada no Cinema de Manoel de Oliveira</p>",
+				text: "«Aprender a Viver em “Another Woman” de Woody Allen»",
 			},
 			{
 				type: "subtitle",
-				text: "Trabalho Final para a Unidade Curricular “Modernismo e Modernismos na Arte do Século XX em Portugal” leccionada pela Professora Joana Cunha Leal na Nova FCSH",
+				text: "Trabalho Final para a Unidade Curricular “Estética e Estudos Artísticos” leccionada pelo Professor João Constâncio na Nova FCSH",
 			},
 			{
 				type: "image",
@@ -383,13 +373,13 @@ const pages: Page[] = [
 			},
 			{
 				type: "author",
-				text: "Lisboa, 31 de Janeiro de 2025 <br> Vasco Ayala Serôdio",
+				text: "Lisboa, <time datetime='2025-01-31'>31 de Janeiro de 2025</time> <br> Vasco Ayala Serôdio",
 			},
 		],
 	},
 	{
-		id: 3,
-		slug: PageSlugs.thirdPage,
+		slug: "analise-prima-notte",
+		date: "2025-06-05",
 		title: "análise do filme “La prima notte di quiete”",
 		content: [
 			{
@@ -605,409 +595,29 @@ const pages: Page[] = [
 			},
 			{
 				type: "author",
-				text: "Lisboa, 5 de Junho de 2025 <br> Vasco Ayala Serôdio",
+				text: "Lisboa, <time datetime='2025-06-05'>5 de Junho de 2025</time> <br> Vasco Ayala Serôdio",
 			},
 		],
 	},
 ];
 
-let currentPage = "home";
+export const SITE = "https://www.vascoayalaserodio.pt";
+export const AUTHOR = "Vasco Ayala Serôdio";
 
-function titleAnimation(startTimeout: number) {
-	setTimeout(() => title?.classList.add("hidden"), startTimeout);
-	setTimeout(() => bar?.classList.add("hidden"), startTimeout + 100);
-	setTimeout(() => {
-		bar?.classList.remove("hidden");
-		bar?.classList.add("disappear");
-		title?.classList.add("disappear");
-	}, startTimeout + 600);
+const plain = (html = "") =>
+	html
+		.replace(/<[^>]*>/g, " ")
+		.replace(/\s+/g, " ")
+		.trim();
+
+/** Essay title as plain text, taken from its "title" block. */
+export const headline = (page: Page) =>
+	plain(page.content.find((b) => b.type === "title")?.text);
+
+/** First paragraph, cut to about 155 characters for search results. */
+export function summary(page: Page) {
+	const text = plain(page.content.find((b) => b.type === "text")?.text);
+	return text.length > 155
+		? `${text.slice(0, text.lastIndexOf(" ", 152))}…`
+		: text;
 }
-
-function goToPage(slug: PageSlugs) {
-	currentPage = slug;
-	window.location.hash = slug;
-}
-
-function getCurrentPage() {
-	return pages.find((p) => p.slug === currentPage);
-}
-
-function handleHash() {
-	const slug = window.location.hash.slice(1) as PageSlugs;
-	currentPage = slug || "home";
-
-	titleAnimation(900);
-}
-
-let title: HTMLHeadingElement;
-let bar: HTMLSpanElement;
-
-onMount(() => {
-	const hash = window.location.hash.slice(1) as PageSlugs;
-	if (hash && pages.find((p) => p.slug === hash)) currentPage = hash;
-
-	titleAnimation(1100);
-});
-</script>
-
-
-<svelte:head>
-	<meta name="description" content="Listing of works about stuff" />
-	<meta property="og:title" content="Vasco Ayala Serôdio" />
-	<meta property="og:image" content="banner.jpg" />
-	<title>Vasco Ayala</title>
-
-
-	<style lang="css">
-		:root {
-		--color-primary: #1a1a1a;
-		--color-border: #e0e0e0;
-		--color-background: #ffffff;
-	}
-
-	body {
-		font-family:
-			-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif;
-		background-color: var(--color-background);
-		color: var(--color-primary);
-		line-height: 1.6;
-
-		@media (orientation: portrait) {
-			line-height: 1.4;
-		}
-	}
-
-	.homepage {
-		min-height: 100vh;
-		display: flex;
-		text-align: center;
-		background: linear-gradient(135deg, #ffffff 0%, #f8f9fb 100%);
-
-		.home-title {
-			position: absolute;
-			top: 5vh;
-			left: 5vw;
-			display: flex;
-			flex-direction: column;
-
-			.text {
-				font-size: 2rem;
-				font-weight: 700;
-				transition: all 200ms ease;
-				position: relative;
-				margin-bottom: 0;
-
-				@media (orientation: portrait) {
-						font-size: 1.7rem;
-					}
-
-				&::before {
-					position: absolute;
-					left: -1vw;
-					border-left: solid 2px black;
-					transition: all 250ms ease;
-					width: 2px;
-					height: 15vh;
-					color: black;
-					content: "";
-				}
-				&.hidden {
-					text-transform: lowercase;
-
-					&::before {
-						height: 100%;
-						border-left-width: 1px;
-					}
-					&::after {
-						transform: translateX(-77%);
-					}
-				}
-
-				&.disappear::before {
-					border: none;
-				}
-				
-				&::after {
-					content: "Serôdio";
-					position: absolute;
-					translate: 5% 1%;
-					transition: all 250ms ease;
-					background-color: white;
-				}
-			}
-
-			.bar {
-				position: absolute;
-				bottom: 0;
-				left: -7%;
-				width: 180%;
-				background-color: black;
-				height: 2px;
-				transition: all 250ms ease;
-
-				&.hidden {
-					height: 1px;
-					width: 130%;
-				}
-
-				&.disappear {
-					width: 0%;
-					height: 0;
-				}
-			}
-		}
-
-		.links-list {
-			margin-top: 32vh;
-			display: flex;
-			flex-direction: column;
-
-			.link-button {
-				width: 60vw;
-				padding-top: 2vh;
-				padding-bottom: 2vh;
-				margin-left: 30%;
-				font-size: 1.1rem;
-				font-weight: bold;
-				color: hsl(0 0 25);
-				border: none;
-				cursor: pointer;
-				background: transparent;
-				border-radius: 8px;
-				transition: all 180ms ease;
-				text-align: left;
-
-				@media (orientation: portrait) {
-						font-size: 0.8rem;
-					}
-
-				&::before {
-					content: "_";
-					display: none;
-				}
-				
-				&:hover {
-					font-weight: bolder;
-					color: black;
-					letter-spacing: 0.03rem;
-					text-transform: capitalize;
-		
-					&::before {
-						display: inline-block;
-					}
-				}
-			}
-
-		}
-	}
-
-	.page-container {
-		min-height: 100vh;
-		background: linear-gradient(135deg, #ffffff 0%, #f8f9fb 100%);
-		position: relative;
-		font-family: "Times New Roman", Times, serif;
-
-		.home-button {
-			position: fixed;
-			top: 4vw;
-			left: 3vw;
-			cursor: pointer;
-			transition: all 100ms ease;
-			z-index: 10;
-			display: flex;
-			border: none;
-			padding: 15px;
-			padding-left: 3px;
-			background-color: transparent;
-
-			
-			span {
-				border-left: solid 2px black;
-				width: 9px;
-				aspect-ratio:1;
-				border-top: solid 2px black;
-				rotate: -45deg;
-				box-shadow: 10px 10px black;
-				transition: all 200ms ease;
-			}
-
-			&:hover {
-				translate: -2px;
-
-				span {
-					box-shadow: 1px 1px black;
-				}
-			}
-		}
-
-		.article {
-			max-width: 720px;
-			margin: 0 auto;
-			padding: 3rem 2rem;
-			padding-top: 3rem;
-			
-			.page-content {
-				display: flex;
-				flex-direction: column;
-				gap: 2vh;
-				position: relative;
-				
-				sup {
-					font-size: 0.5rem;
-
-					@media (orientation: portrait) {
-						font-size: 0.4rem;
-					}
-				}
-				
-				.title {
-					font-size: 2rem;
-					font-weight: 700;
-					
-					@media (orientation: portrait) {
-						font-size: 1.7rem;
-					}
-
-					p {
-						margin-top: 0;
-						font-size: 1.4rem;
-
-						@media (orientation: portrait) {
-						font-size: 1.1rem;
-					}
-					}
-				}
-				
-				.subtitle {
-					margin-top: 0;
-					text-align: end;
-					position: relative;
-					font-size: 1.2rem;
-					right: 0;
-					text-indent: 1rem;
-					color: black;
-					font-weight: bolder;
-
-					@media (orientation: portrait) {
-						font-size: 0.9rem;
-					}
-				}
-				
-				.text {
-					font-size: 1.1rem;
-					line-height: 1.8;
-					color: var(--color-primary);
-					text-indent: 3rem;
-					margin-bottom: 2vh;
-
-					@media (orientation: portrait) {
-						font-size: 0.8rem;
-						line-height: 1.6;
-					}
-				}
-				
-				.image {
-					margin: 0;
-					border-radius: 8px;
-					overflow: hidden;
-					box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-		
-					& img {
-						width: 100%;
-						height: auto;
-						background-color: grey;
-						display: block;
-					}
-				}
-		
-				.chapter {
-					font-weight: bolder;
-					margin-bottom: 0;
-					margin-top: 3vh;
-				}
-		
-				.dialog {
-					margin-left: 5%;
-				}
-		
-				.quote {
-					font-size: 1rem;
-					text-indent: 4rem;
-					margin-left: 10%;
-
-					@media (orientation: portrait) {
-						font-size: 0.7rem;
-					}
-				}
-		
-				.author {
-					text-align: end;
-				}
-			}
-		}
-	}
-
-	</style>
-</svelte:head>
-
-<svelte:window on:hashchange={handleHash} />
-
-<main>
-	{#if currentPage === 'home'}
-		<div class="homepage">
-
-				<div class="home-title">
-					<h1 bind:this={title} class="text">Vasco Ayala</h1>
-					<span bind:this={bar} class="bar"></span>
-				</div>	
-
-				<nav class="links-list">
-					{#each pages as page (page.id)}	
-						<button
-							type="button"
-							class="link-button"
-							on:pointerdown={() => goToPage(page.slug)}
-						>
-							{page.title}
-						</button>
-					{/each}
-				</nav>
-
-		</div>
-	{:else}
-		<div class="page-container" transition:fade={{ duration: 70 }}>
-			<button 
-				class="home-button" 
-				on:pointerdown={() => {
-					window.location.hash = "";
-					titleAnimation(1100);	
-				}} 
-				title="Return to Homepage">
-				<span></span>
-			</button>
-
-			<article class="article">
-				{#if getCurrentPage()}
-					<div class="page-content">
-						{#each getCurrentPage().content as block}
-							{#if block.type === 'image'}
-								<figure class={block.type}>
-									<img
-										src={block.src}
-										alt={block.alt}
-										loading="lazy"
-									/>
-								</figure>
-							{:else}
-								<p class={block.type}>
-									{@html block.text}
-								</p>
-									
-							{/if}
-						{/each}
-					</div>
-				{/if}
-			</article>
-		</div>
-	{/if}
-</main>
